@@ -2,79 +2,766 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tá Dentro</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Tá Dentro | Palpites Esportivos</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f0f7e8 0%, #e2f0d3 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+
+    .app-container {
+      max-width: 1400px;
+      width: 100%;
+      background: #ffffffdd;
+      backdrop-filter: blur(2px);
+      border-radius: 2rem;
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .main-header {
+      background: #1e3a2f;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 3px solid #f5c542;
+    }
+
+    .logo-area h1 {
+      color: #f5c542;
+      font-size: 1.9rem;
+      letter-spacing: -0.5px;
+      font-weight: 800;
+    }
+
+    .logo-area span {
+      color: #e0e7d9;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+      background: #2b5a45;
+      padding: 0.4rem 1rem;
+      border-radius: 60px;
+    }
+
+    .welcome-text {
+      color: #f9f6e0;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .days-badge {
+      background: #f5c542;
+      color: #1e3a2f;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .renew-plan-btn {
+      background: transparent;
+      border: 1.5px solid #f5c542;
+      color: #f5c542;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .renew-plan-btn:hover {
+      background: #f5c542;
+      color: #1e3a2f;
+    }
+
+    .back-button {
+      background: #f5c542;
+      border: none;
+      color: #1e3a2f;
+      font-weight: bold;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+    }
+
+    .section {
+      padding: 2rem 2rem 2.5rem;
+      transition: 0.2s;
+    }
+
+    .hidden-section {
+      display: none;
+    }
+
+    .form-card {
+      max-width: 480px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 2rem;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid #d9e6c3;
+    }
+
+    .input-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: 600;
+      color: #2c4b3a;
+      margin-bottom: 0.5rem;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border-radius: 1rem;
+      border: 1px solid #cfe3bf;
+      font-size: 1rem;
+      background: #fefef7;
+      transition: 0.2s;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: #f5c542;
+      box-shadow: 0 0 0 3px #f5c54255;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: #1e3a2f;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      flex: 1;
+      transition: 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #2f6b4f;
+    }
+
+    .btn-secondary {
+      background: #f5c542;
+      color: #1e3a2f;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .palpites-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin-top: 1.8rem;
+    }
+
+    .card-bet {
+      background: white;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid #e2f0d3;
+    }
+
+    .card-bet:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 30px -8px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-bet.hidden-card {
+      display: none;
+    }
+
+    .card-header {
+      background: #faf9ec;
+      padding: 1rem 1.2rem;
+      border-bottom: 2px solid #f5c542;
+    }
+
+    .card-header h3 {
+      font-size: 1.5rem;
+      color: #1e3a2f;
+      font-weight: 800;
+    }
+
+    .card-body {
+      padding: 1.2rem;
+    }
+
+    .bet-detail {
+      background: #f4f9ef;
+      padding: 0.7rem;
+      border-radius: 1rem;
+      margin-bottom: 0.8rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #2b4b3a;
+    }
+
+    .bet-detail span {
+      font-weight: 800;
+      color: #000;
+    }
+
+    .btn-details {
+      background: #2e7d5e;
+      color: white;
+      border: none;
+      padding: 0.7rem;
+      width: 100%;
+      border-radius: 2rem;
+      font-weight: bold;
+      margin-top: 0.6rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-details:hover {
+      background: #1e5a44;
+    }
+
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .popup-ad {
+      background: white;
+      max-width: 460px;
+      width: 90%;
+      max-height: 80vh;
+      border-radius: 2rem;
+      overflow: hidden;
+      box-shadow: 0 30px 40px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .popup-header {
+      background: #1e3a2f;
+      padding: 1rem;
+      display: flex;
+      justify-content: flex-end;
+      flex-shrink: 0;
+    }
+
+    .close-popup {
+      background: #f5c542;
+      border: none;
+      font-size: 1.4rem;
+      font-weight: bold;
+      width: 36px;
+      height: 36px;
+      border-radius: 30px;
+      cursor: pointer;
+      color: #1e3a2f;
+    }
+
+    .popup-content {
+      padding: 1.5rem;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .popup-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .popup-content::-webkit-scrollbar-track {
+      background: #e2f0d3;
+      border-radius: 10px;
+    }
+
+    .popup-content::-webkit-scrollbar-thumb {
+      background: #1e3a2f;
+      border-radius: 10px;
+    }
+
+    .popup-content::-webkit-scrollbar-thumb:hover {
+      background: #f5c542;
+    }
+
+    .match-item {
+      background: #fef5e0;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 1.2rem;
+    }
+
+    .match-title {
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #1e3a2f;
+    }
+
+    .bet-example {
+      color: #2e5c46;
+      margin-top: 0.4rem;
+    }
+
+    .plans-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    .plan-card {
+      background: white;
+      border-radius: 1.8rem;
+      flex: 1;
+      min-width: 240px;
+      padding: 1.6rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      border-top: 6px solid #f5c542;
+      transition: 0.2s;
+    }
+
+    .plan-card h3 {
+      font-size: 1.8rem;
+      color: #1e3a2f;
+      margin-bottom: 0.5rem;
+    }
+
+    .plan-price {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #e6a017;
+      margin: 0.6rem 0;
+    }
+
+    .plan-features {
+      list-style: none;
+      margin: 1rem 0;
+    }
+
+    .plan-features li {
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-info {
+      background: #eef3e8;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      scroll-margin-top: 20px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1rem 0;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      background: #25d36620;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      color: #075e54;
+      font-weight: 500;
+    }
+
+    hr {
+      margin: 1rem 0;
+      border-color: #cfe0bd;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 650px) {
+      .main-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      .section {
+        padding: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
+<div class="app-container" id="appRoot">
+  <header class="main-header" id="dynamicHeader">
+    <div class="logo-area">
+      <h1>TÁ DENTRO</h1>
+      <span>Tá Dentro</span>
+    </div>
+    <div class="header-actions" id="headerActions"></div>
+  </header>
 
-<header id="header">
-  <h1 id="titulo">Tá Dentro</h1>
-  <button id="backBtn" onclick="voltar()" style="display:none;">← Voltar</button>
-</header>
-
-<!-- LOGIN -->
-<section id="login">
-  <div class="form">
-    <input type="text" id="numero" placeholder="Número">
-    <input type="password" id="senha" placeholder="Senha">
-    <button onclick="entrar()">Entrar</button>
-    <button onclick="abrirPlanos()">Registrar</button>
-  </div>
-</section>
-
-<!-- PLANOS -->
-<section id="planos" class="hidden">
-  <h2>Planos</h2>
-
-  <div class="plano">
-    <h3>Cambuta</h3>
-    <p>500 Kz / semana</p>
-    <p>3 palpites/dia</p>
-    <p>25 por semana</p>
-  </div>
-
-  <div class="plano">
-    <h3>Bué Mal</h3>
-    <p>1.000 Kz / semana</p>
-    <p>5 palpites/dia</p>
-    <p>28 por semana</p>
+  <div id="loginSection" class="section">
+    <div class="form-card">
+      <h2 style="color:#1e3a2f; margin-bottom: 1.5rem;">🔐 Acesso à Área VIP</h2>
+      <div class="input-group">
+        <label>📱 Número</label>
+        <input type="text" id="loginNumber" placeholder="Digite seu número" value="">
+      </div>
+      <div class="input-group">
+        <label>🔒 Senha</label>
+        <input type="password" id="loginPassword" placeholder="Sua senha">
+      </div>
+      <div class="button-group">
+        <button class="btn-primary" id="btnEntrar">ENTRAR</button>
+        <button class="btn-secondary" id="btnRegistrar">REGISTRAR</button>
+      </div>
+      <p style="font-size: 0.75rem; margin-top: 1.2rem; text-align: center;">
+        Vamos vencer juntos
+      </p>
+    </div>
   </div>
 
-  <div class="plano">
-    <h3>Boss</h3>
-    <p>1.500 Kz / semana</p>
-    <p>100 palpites/dia</p>
-    <p>44 por semana</p>
+  <div id="palpitesSection" class="section hidden-section">
+    <h2 style="color:#1e3a2f; margin-bottom: 0.2rem;">🎯 PALPITES EXCLUSIVOS</h2>
+    <p style="margin-bottom: 1rem; color: #4e6b5a;">Dicas premium de especialistas</p>
+    <div class="palpites-grid" id="palpitesGrid"></div>
   </div>
 
-  <div class="contacto">
-    <p>WhatsApp: +244958686897</p>
-    <p>Facebook: link aqui</p>
-    <p>Ligar: +244958686897</p>
-  </div>
-</section>
-
-<!-- DASHBOARD -->
-<section id="dashboard" class="hidden">
-
-  <div id="welcome" class="welcome">
-    Bem-vindo usuário! Boa sorte!
-  </div>
-
-  <div class="cards" id="cards"></div>
-
-</section>
-
-<!-- POPUP -->
-<div id="popup" class="popup hidden">
-  <div class="popup-content">
-    <span onclick="fecharPopup()" class="close">X</span>
-    <p>Barcelona vs Real Madrid</p>
-    <p>Barcelona ganha qualquer parte</p>
+  <div id="planosSection" class="section hidden-section">
+    <div class="plans-container" id="plansContainer"></div>
+    <div class="contact-info" id="contactSection">
+      <h3 style="color:#1e3a2f;">📞 CONTATOS & SUPORTE</h3>
+      <div class="contact-row">
+        <span>💬 WhatsApp:</span>
+        <a href="https://wa.me/244958685897" class="contact-link" target="_blank">+244 958 685 897</a>
+      </div>
+      <div class="contact-row">
+        <span>📞 Telefone:</span>
+        <a href="tel:+244958685897" class="contact-link">+244 958 685 897</a>
+      </div>
+      <div class="contact-row">
+        <span>📘 Facebook:</span>
+        <a href="https://www.facebook.com/profile.php?id=100091666827276" class="contact-link" target="_blank">facebook.com/TaDentroOficial</a>
+      </div>
+      <p style="font-size:0.7rem; margin-top:1rem;">Siga-nos para mais promoções 🌟</p>
+    </div>
   </div>
 </div>
 
-<script src="js/main.js"></script>
+<script>
+  // Dados dos palpites (agora com 8 itens: DIÁRIO 1,2,3,4, INJETÁVEL 1,2, CORRIDA 1,2)
+  const palpitesData = [
+    { id: "diario1", titulo: "DIÁRIO 1", bets: ["🏆 Premier Bet Física: 1.2.3", "🐘 Elefante Bet Online: 2.123", "🟢 Bantu Bet Online: 2.123", "💰 Kwanza Bet Online: 2.123"] },
+    { id: "diario2", titulo: "DIÁRIO 2", bets: ["🏆 Premier Bet Física: 1.2.3", "🐘 Elefante Bet Online: 2.123", "🟢 Bantu Bet Online: 2.123", "💰 Kwanza Bet Online: 2.123"] },
+    { id: "diario3", titulo: "DIÁRIO 3", bets: ["🏆 Premier Bet Física: 1.2.3", "🐘 Elefante Bet Online: 2.123", "🟢 Bantu Bet Online: 2.123", "💰 Kwanza Bet Online: 2.123"] },
+    { id: "diario4", titulo: "DIÁRIO 4", bets: ["🏆 Premier Bet Física: 1.2.3", "🐘 Elefante Bet Online: 2.123", "🟢 Bantu Bet Online: 2.123", "💰 Kwanza Bet Online: 2.123"] },
+    { id: "injetavel1", titulo: "INJETÁVEL 1", bets: ["🏆 Premier Bet Física: 1.2.3", "🐘 Elefante Bet Online: 2.123", "🟢 Bantu Bet Online: 2.123", "💰 Kwanza Bet Online: 2.123"] },
+    { id: "injetavel2", titulo: "INJETÁVEL 2", bets: ["🏆 Premier Bet Física: 1.2.3", "🐘 Elefante Bet Online: 2.123", "🟢 Bantu Bet Online: 2.123", "💰 Kwanza Bet Online: 2.123"] },
+    { id: "corrida1", titulo: "CORRIDA 1", bets: ["🏆 Premier Bet Física: 1.2.3", "🐘 Elefante Bet Online: 2.123", "🟢 Bantu Bet Online: 2.123", "💰 Kwanza Bet Online: 2.123"] },
+    { id: "corrida2", titulo: "CORRIDA 2", bets: ["🏆 Premier Bet Física: 1.2.3", "🐘 Elefante Bet Online: 2.123", "🟢 Bantu Bet Online: 2.123", "💰 Kwanza Bet Online: 2.123"] }
+  ];
+
+  // Perfis de usuários
+  const usuarios = {
+    "777500": { senha: "2020", nome: "VENCEDOR BRONZE", niveis: { diario1: true, diario2: true, diario3: false, diario4: false, injetavel1: false, injetavel2: false, corrida1: true, corrida2: false } },
+    "400600": { senha: "3030", nome: "VENCEDOR PRATA", niveis: { diario1: true, diario2: true, diario3: true, diario4: false, injetavel1: false, injetavel2: false, corrida1: true, corrida2: false } },
+    "299222": { senha: "5050", nome: "VENCEDOR OURO", niveis: { diario1: true, diario2: true, diario3: true, diario4: true, injetavel1: true, injetavel2: true, corrida1: true, corrida2: true } }
+  };
+
+  const planosList = [
+    { nome: "BOCADO", preco: "500 KZ", beneficios: ["21 palpites/semana", "2 Diários + 1 Corrida"] },
+    { nome: "PALPITE BUÉ MAU", preco: "1000 KZ", beneficios: ["28 palpites/semana", "3 Diários + 1 Corrida"] },
+    { nome: "PLANO BOSS", preco: "2000 KZ", beneficios: ["44 palpites/semana", "3 Diários, 2 Corridas, 2 Injetáveis"] }
+  ];
+
+  const loginSection = document.getElementById('loginSection');
+  const palpitesSection = document.getElementById('palpitesSection');
+  const planosSection = document.getElementById('planosSection');
+  const headerActions = document.getElementById('headerActions');
+
+  let currentUser = null;
+  let currentUserNiveis = null;
+
+  function updateHeader(state, userName = null) {
+    const logoDiv = document.querySelector('.logo-area h1');
+    const logoSpan = document.querySelector('.logo-area span');
+    
+    if (state === 'login') {
+      if (logoDiv) logoDiv.innerText = 'TÁ DENTRO';
+      if (logoSpan) logoSpan.innerText = 'Tá Dentro';
+      headerActions.innerHTML = '';
+    } 
+    else if (state === 'palpites') {
+      if (logoDiv) logoDiv.innerText = `BEM-VINDO, ${userName || 'VENCEDOR'}`;
+      if (logoSpan) logoSpan.innerText = 'Tá Dentro';
+      headerActions.innerHTML = `
+        <div class="days-badge">📅 FALTAM 7 DIAS</div>
+        <button class="renew-plan-btn" id="renewPlanHeaderBtn">🔄 RENOVAR PLANO</button>
+      `;
+      const renewBtn = document.getElementById('renewPlanHeaderBtn');
+      if (renewBtn) {
+        renewBtn.addEventListener('click', () => {
+          showPlanosFromRenew();
+        });
+      }
+    } 
+    else if (state === 'planos') {
+      if (logoDiv) logoDiv.innerText = 'TÁ DENTRO';
+      if (logoSpan) logoSpan.innerText = 'Planos';
+      headerActions.innerHTML = `<button class="back-button" id="backToLoginBtn">⬅ VOLTAR</button>`;
+      const backBtn = document.getElementById('backToLoginBtn');
+      if (backBtn) {
+        backBtn.addEventListener('click', () => {
+          showLoginScreen();
+        });
+      }
+    }
+  }
+
+  function showLoginScreen() {
+    loginSection.classList.remove('hidden-section');
+    palpitesSection.classList.add('hidden-section');
+    planosSection.classList.add('hidden-section');
+    updateHeader('login');
+    currentUser = null;
+    currentUserNiveis = null;
+  }
+
+  function renderPalpites() {
+    const grid = document.getElementById('palpitesGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    
+    palpitesData.forEach((item, idx) => {
+      // Verifica se o usuário tem acesso a este palpite
+      const hasAccess = currentUserNiveis && currentUserNiveis[item.id];
+      
+      const card = document.createElement('div');
+      card.className = 'card-bet';
+      if (!hasAccess) {
+        card.classList.add('hidden-card');
+      }
+      card.innerHTML = `
+        <div class="card-header">
+          <h3>${item.titulo}</h3>
+        </div>
+        <div class="card-body">
+          ${item.bets.map(bet => `<div class="bet-detail">${bet}</div>`).join('')}
+          <button class="btn-details" data-card-index="${idx}">🔍 VER DETALHES</button>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+    
+    document.querySelectorAll('.btn-details').forEach(btn => {
+      btn.addEventListener('click', () => {
+        showPopupAd();
+      });
+    });
+  }
+
+  function showPopupAd() {
+    const overlay = document.createElement('div');
+    overlay.className = 'popup-overlay';
+    overlay.innerHTML = `
+      <div class="popup-ad">
+        <div class="popup-header">
+          <button class="close-popup">✕</button>
+        </div>
+        <div class="popup-content">
+          <div class="match-item">
+            <div class="match-title">⚽ REAL MADRID vs BAYERN MUNIQUE</div>
+            <div class="bet-example">🏠 Casa: 2.10 | 🤝 Empate: 3.40 | ✈️ Fora: 3.20</div>
+            <div class="bet-example">📈 Mais de 1.5 Golos: 1.45</div>
+            <div class="bet-example">🎯 Ambas Marcam: 1.80</div>
+          </div>
+          <div class="match-item">
+            <div class="match-title">🔴 BARCELONA vs ATLÉTICO MADRID</div>
+            <div class="bet-example">🔥 Mais de 3.5 Golos: 2.30</div>
+            <div class="bet-example">⚡ Ambos marcam: 1.85</div>
+            <div class="bet-example">🏆 Vencedor: Barcelona 2.15</div>
+          </div>
+          <div class="match-item">
+            <div class="match-title">🏴󠁧󠁢󠁥󠁮󠁧󠁿 MANCHESTER CITY vs LIVERPOOL</div>
+            <div class="bet-example">📊 Mais de 2.5 Golos: 1.75</div>
+            <div class="bet-example">🎯 Ambas Marcam: 1.65</div>
+            <div class="bet-example">⚡ Vencedor: Empate 3.20</div>
+          </div>
+          <div class="match-item">
+            <div class="match-title">🇮🇹 INTER vs JUVENTUS</div>
+            <div class="bet-example">🏠 Casa: 2.05 | ✈️ Fora: 3.10</div>
+            <div class="bet-example">📈 Mais de 1.5 Golos: 1.50</div>
+          </div>
+          <div class="match-item">
+            <div class="match-title">🇫🇷 PSG vs MARSEILLE</div>
+            <div class="bet-example">🏠 Casa: 1.75 | ✈️ Fora: 4.50</div>
+            <div class="bet-example">🔥 Mais de 2.5 Golos: 1.85</div>
+          </div>
+          <div class="match-item">
+            <div class="match-title">🇩🇪 BAYER LEVERKUSEN vs BORUSSIA DORTMUND</div>
+            <div class="bet-example">📊 Empate: 3.60</div>
+            <div class="bet-example">⚡ Ambas Marcam: 1.70</div>
+          </div>
+          <p style="font-size:12px; margin-top:12px; text-align:center;">💡 Exclusivo Tá Dentro - Palpite Especial</p>
+          <p style="font-size:11px; margin-top:8px; text-align:center; color:#888;">🔽 Role para baixo para ver mais palpites 🔽</p>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    const closeBtn = overlay.querySelector('.close-popup');
+    closeBtn.addEventListener('click', () => {
+      overlay.remove();
+    });
+  }
+
+  function scrollToContact() {
+    const contactSection = document.getElementById('contactSection');
+    if (contactSection) {
+      contactSection.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+      contactSection.style.transition = 'all 0.3s ease';
+      contactSection.style.boxShadow = '0 0 0 3px #f5c542';
+      setTimeout(() => {
+        contactSection.style.boxShadow = '';
+      }, 1500);
+    }
+  }
+
+  function renderPlanos() {
+    const container = document.getElementById('plansContainer');
+    if (!container) return;
+    container.innerHTML = '';
+    planosList.forEach((plano, index) => {
+      const planCard = document.createElement('div');
+      planCard.className = 'plan-card';
+      planCard.innerHTML = `
+        <h3>${plano.nome}</h3>
+        <div class="plan-price">${plano.preco}</div>
+        <ul class="plan-features">
+          ${plano.beneficios.map(b => `<li>✅ ${b}</li>`).join('')}
+        </ul>
+        <button class="btn-primary choose-plan-btn" data-plan-index="${index}" style="background:#f5c542; color:#1e3a2f; width:100%">ESCOLHER PLANO</button>
+      `;
+      container.appendChild(planCard);
+    });
+    
+    document.querySelectorAll('.choose-plan-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        scrollToContact();
+      });
+    });
+  }
+
+  function showPlanosScreen() {
+    loginSection.classList.add('hidden-section');
+    palpitesSection.classList.add('hidden-section');
+    planosSection.classList.remove('hidden-section');
+    updateHeader('planos');
+    renderPlanos();
+  }
+
+  function handleRegistrar() {
+    showPlanosScreen();
+  }
+
+  function handleEntrar() {
+    const numero = document.getElementById('loginNumber').value.trim();
+    const senha = document.getElementById('loginPassword').value.trim();
+    
+    const usuario = usuarios[numero];
+    
+    if (usuario && usuario.senha === senha) {
+      currentUser = usuario.nome;
+      currentUserNiveis = usuario.niveis;
+      
+      loginSection.classList.add('hidden-section');
+      palpitesSection.classList.remove('hidden-section');
+      planosSection.classList.add('hidden-section');
+      renderPalpites();
+      updateHeader('palpites', usuario.nome);
+    } else {
+      alert("Acesso negado! Verifique número e senha.");
+    }
+  }
+
+  function showPlanosFromRenew() {
+    showPlanosScreen();
+  }
+
+  function bindEvents() {
+    const btnEntrar = document.getElementById('btnEntrar');
+    const btnRegistrar = document.getElementById('btnRegistrar');
+    if (btnEntrar) btnEntrar.addEventListener('click', handleEntrar);
+    if (btnRegistrar) btnRegistrar.addEventListener('click', handleRegistrar);
+  }
+
+  function init() {
+    bindEvents();
+    showLoginScreen();
+    renderPlanos();
+  }
+
+  init();
+</script>
 </body>
 </html>
