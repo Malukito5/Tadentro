@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tá Dentro</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header id="header">
+  <h1 id="titulo">Tá Dentro</h1>
+  <button id="backBtn" onclick="voltar()" style="display:none;">← Voltar</button>
+</header>
+
+<!-- LOGIN -->
+<section id="login">
+  <div class="form">
+    <input type="text" id="numero" placeholder="Número">
+    <input type="password" id="senha" placeholder="Senha">
+    <button onclick="entrar()">Entrar</button>
+    <button onclick="abrirPlanos()">Registrar</button>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<section id="planos" class="hidden">
+  <h2>Planos</h2>
+
+  <div class="plano">
+    <h3>Cambuta</h3>
+    <p>500 Kz / semana</p>
+    <p>3 palpites/dia</p>
+    <p>25 por semana</p>
+  </div>
+
+  <div class="plano">
+    <h3>Bué Mal</h3>
+    <p>1.000 Kz / semana</p>
+    <p>5 palpites/dia</p>
+    <p>28 por semana</p>
+  </div>
+
+  <div class="plano">
+    <h3>Boss</h3>
+    <p>1.500 Kz / semana</p>
+    <p>100 palpites/dia</p>
+    <p>44 por semana</p>
+  </div>
+
+  <div class="contacto">
+    <p>WhatsApp: +244958686897</p>
+    <p>Facebook: link aqui</p>
+    <p>Ligar: +244958686897</p>
+  </div>
+</section>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="hidden">
+
+  <div id="welcome" class="welcome">
+    Bem-vindo usuário! Boa sorte!
+  </div>
+
+  <div class="cards" id="cards"></div>
+
+</section>
+
+<!-- POPUP -->
+<div id="popup" class="popup hidden">
+  <div class="popup-content">
+    <span onclick="fecharPopup()" class="close">X</span>
+    <p>Barcelona vs Real Madrid</p>
+    <p>Barcelona ganha qualquer parte</p>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
