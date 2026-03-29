@@ -250,18 +250,20 @@
       display: flex;
       justify-content: space-between;
       gap: 0.5rem;
-      margin-top: 0.5rem;
-      font-size: 0.75rem;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.8rem;
       color: #1e3a2f;
-      background: #eef3e8;
-      padding: 0.5rem;
-      border-radius: 0.8rem;
+      background: linear-gradient(135deg, #fef5e0 0%, #faeecd 100%);
+      padding: 0.7rem;
+      border-radius: 1rem;
+      font-weight: 600;
+      border: 1px solid #f5c542;
     }
 
     .bet-stats div {
       flex: 1;
       text-align: center;
-      font-weight: 600;
     }
 
     .btn-details {
@@ -618,15 +620,10 @@
         card.classList.add('hidden-card');
       }
       
-      // Criar os detalhes das apostas com as informações adicionais
-      const betsWithStats = item.bets.map(bet => `
+      // Criar os detalhes das apostas (sem as stats repetidas)
+      const betsList = item.bets.map(bet => `
         <div class="bet-detail">
           ${bet}
-          <div class="bet-stats">
-            <div>🎲 Odds: 10</div>
-            <div>💰 Aposta: 500 KZ</div>
-            <div>🏆 Ganho: 5.000 KZ</div>
-          </div>
         </div>
       `).join('');
       
@@ -635,7 +632,12 @@
           <h3>${item.titulo}</h3>
         </div>
         <div class="card-body">
-          ${betsWithStats}
+          ${betsList}
+          <div class="bet-stats">
+            <div>🎲 Odds: 10</div>
+            <div>💰 Aposta: 500 KZ</div>
+            <div>🏆 Ganho: 5.000 KZ</div>
+          </div>
           <button class="btn-details" data-card-index="${idx}">🔍 VER DETALHES</button>
         </div>
       `;
