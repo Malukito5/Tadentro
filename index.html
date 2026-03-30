@@ -4,7 +4,478 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Tá Dentro | Palpites Esportivos</title>
-  <link rel="stylesheet" href="main.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f0f7e8 0%, #e2f0d3 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+
+    .app-container {
+      max-width: 1400px;
+      width: 100%;
+      background: #ffffffdd;
+      backdrop-filter: blur(2px);
+      border-radius: 2rem;
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .main-header {
+      background: #1e3a2f;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 3px solid #f5c542;
+    }
+
+    .logo-area h1 {
+      color: #f5c542;
+      font-size: 1.9rem;
+      letter-spacing: -0.5px;
+      font-weight: 800;
+    }
+
+    .logo-area span {
+      color: #e0e7d9;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+      background: #2b5a45;
+      padding: 0.4rem 1rem;
+      border-radius: 60px;
+    }
+
+    .welcome-text {
+      color: #f9f6e0;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .days-badge {
+      background: #f5c542;
+      color: #1e3a2f;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .renew-plan-btn {
+      background: transparent;
+      border: 1.5px solid #f5c542;
+      color: #f5c542;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .renew-plan-btn:hover {
+      background: #f5c542;
+      color: #1e3a2f;
+    }
+
+    .back-button {
+      background: #f5c542;
+      border: none;
+      color: #1e3a2f;
+      font-weight: bold;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+    }
+
+    .section {
+      padding: 2rem 2rem 2.5rem;
+      transition: 0.2s;
+    }
+
+    .hidden-section {
+      display: none;
+    }
+
+    .form-card {
+      max-width: 480px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 2rem;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid #d9e6c3;
+    }
+
+    .input-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: 600;
+      color: #2c4b3a;
+      margin-bottom: 0.5rem;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border-radius: 1rem;
+      border: 1px solid #cfe3bf;
+      font-size: 1rem;
+      background: #fefef7;
+      transition: 0.2s;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: #f5c542;
+      box-shadow: 0 0 0 3px #f5c54255;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: #1e3a2f;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      flex: 1;
+      transition: 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #2f6b4f;
+    }
+
+    .btn-secondary {
+      background: #f5c542;
+      color: #1e3a2f;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .palpites-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.8rem;
+      margin-top: 1.8rem;
+    }
+
+    .card-bet {
+      background: white;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid #e2f0d3;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-bet:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 30px -8px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-bet.hidden-card {
+      display: none;
+    }
+
+    .card-header {
+      background: #faf9ec;
+      padding: 1rem 1.2rem;
+      border-bottom: 2px solid #f5c542;
+    }
+
+    .card-header h3 {
+      font-size: 1.5rem;
+      color: #1e3a2f;
+      font-weight: 800;
+    }
+
+    .card-body {
+      padding: 1.2rem;
+      flex: 1;
+    }
+
+    .bet-detail {
+      background: #f4f9ef;
+      padding: 0.7rem;
+      border-radius: 1rem;
+      margin-bottom: 0.8rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #2b4b3a;
+      word-break: break-word;
+    }
+
+    .bet-detail span {
+      font-weight: 800;
+      color: #000;
+    }
+
+    .unavailable-text {
+      background: #f9e6e6;
+      color: #b33;
+      font-weight: bold;
+      text-align: center;
+      padding: 1rem;
+      border-radius: 1rem;
+    }
+
+    .bet-stats {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.8rem;
+      color: #1e3a2f;
+      background: linear-gradient(135deg, #fef5e0 0%, #faeecd 100%);
+      padding: 0.7rem;
+      border-radius: 1rem;
+      font-weight: 600;
+      border: 1px solid #f5c542;
+    }
+
+    .bet-stats div {
+      flex: 1;
+      text-align: center;
+    }
+
+    .btn-details {
+      background: #2e7d5e;
+      color: white;
+      border: none;
+      padding: 0.7rem;
+      width: 100%;
+      border-radius: 2rem;
+      font-weight: bold;
+      margin-top: 0.6rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-details:hover {
+      background: #1e5a44;
+    }
+
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .popup-ad {
+      background: white;
+      max-width: 500px;
+      width: 90%;
+      max-height: 80vh;
+      border-radius: 2rem;
+      overflow: hidden;
+      box-shadow: 0 30px 40px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .popup-header {
+      background: #1e3a2f;
+      padding: 1rem;
+      display: flex;
+      justify-content: flex-end;
+      flex-shrink: 0;
+    }
+
+    .close-popup {
+      background: #f5c542;
+      border: none;
+      font-size: 1.4rem;
+      font-weight: bold;
+      width: 36px;
+      height: 36px;
+      border-radius: 30px;
+      cursor: pointer;
+      color: #1e3a2f;
+    }
+
+    .popup-content {
+      padding: 1.5rem;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .popup-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .popup-content::-webkit-scrollbar-track {
+      background: #e2f0d3;
+      border-radius: 10px;
+    }
+
+    .popup-content::-webkit-scrollbar-thumb {
+      background: #1e3a2f;
+      border-radius: 10px;
+    }
+
+    .match-item {
+      background: #fef5e0;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 1.2rem;
+    }
+
+    .match-title {
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #1e3a2f;
+    }
+
+    .bet-example {
+      color: #2e5c46;
+      margin-top: 0.4rem;
+    }
+
+    .plans-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    .plan-card {
+      background: white;
+      border-radius: 1.8rem;
+      flex: 1;
+      min-width: 240px;
+      padding: 1.6rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      border-top: 6px solid #f5c542;
+      transition: 0.2s;
+    }
+
+    .plan-card h3 {
+      font-size: 1.8rem;
+      color: #1e3a2f;
+      margin-bottom: 0.5rem;
+    }
+
+    .plan-price {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #e6a017;
+      margin: 0.6rem 0;
+    }
+
+    .plan-features {
+      list-style: none;
+      margin: 1rem 0;
+    }
+
+    .plan-features li {
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-info {
+      background: #eef3e8;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      scroll-margin-top: 20px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1rem 0;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      background: #25d36620;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      color: #075e54;
+      font-weight: 500;
+    }
+
+    hr {
+      margin: 1rem 0;
+      border-color: #cfe0bd;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 650px) {
+      .main-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      .section {
+        padding: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
 <div class="app-container" id="appRoot">
@@ -64,6 +535,335 @@
   </div>
 </div>
 
-<script src="main.js"></script>
+<script>
+  // Dados dos palpites atualizados: DIÁRIO 1 e DIÁRIO 2 com conteúdo completo
+  const palpitesData = [
+    { 
+      id: "diario1", 
+      titulo: "📆 DIÁRIO 1", 
+      bets: [
+        "🏆 Premier Bet físico: 66130964",
+        "🐘 Elephant online: 979770",
+        "🏬 Elephant Física: 377D516",
+        "🟢 Bantu Bet: 980354",
+        "💰 Kwanza Bet: indisponível"
+      ],
+      odd: "20-30",
+      aposta: "500 KZ",
+      ganho: "15.000 KZ",
+      detalhesEspeciais: [
+        "🇩🇪 Alemanha vs Gana → 1/2 e +2.5 Golos ⚽⚽",
+        "🇨🇾 Cypre vs Moldova → 1X e -3.5 Golos 🛡️",
+        "🇬🇾 Guyana vs Belize → 2X e -3.5 golos 🌍",
+        "🇮🇹 Arezza vs Ascoli → 1X e -3.5 Golos 🔥",
+        "🇷🇺 Torpedo vs Ska → 1X e +1.5 Golos ⚡",
+        "🇪🇬 Masry vs Gouna → 1X e -3.5 Golos 🎯",
+        "🇪🇬 Arabi vs Masr → 2X e -3.5 Golos 💪"
+      ],
+      inicioFicha: "⏰ Início da ficha: 16h"
+    },
+    { 
+      id: "diario2", 
+      titulo: "📆 DIÁRIO 2", 
+      bets: [
+        "🏆 Premier Bet físico: 66222354",
+        "🐘 Elephant online: 995057",
+        "🏬 Elephant Física: 331c781",
+        "🟢 Bantu Bet: 994397",
+        "💰 Kwanza Bet: indisponível"
+      ],
+      odd: "20",
+      aposta: "500 KZ",
+      ganho: "10.000 KZ",
+      detalhesEspeciais: [
+        "🇮🇱 Maccabi Herzliya vs. Hapoel Hadera FC → 🕐 1ª parte – hipótese dupla: Maccabi Herzliya ou Hapoel Hadera FC",
+        "🇮🇱 MS Football Hapoel Kiryat Yam vs. Hapoel Acre FC → ⚽ Parte mais produtiva: 2ª parte",
+        "🇮🇱 Hapoel Rishon Lezion FC vs. FC Kafr Qasim → 🎯 1x2: Hapoel Rishon Lezion FC",
+        "🇮🇱 Ironi Modiin vs. Hapoel Kfar Saba FC → 🛡️ Total de golos: menos de 2.5",
+        "🇮🇹 Casertana FC vs. ASD Sorrento 1945 → 🔄 Combinação: Casertana FC / ASD Sorrento 1945 e mais de 1.5",
+        "🏴󠁧󠁢󠁥󠁮󠁧󠁿 Chelmsford City FC vs. AFC Totton → 🏆 1x2: Chelmsford City FC"
+      ],
+      inicioFicha: "⏰ Início da ficha: 14:30h"
+    },
+    { id: "diario3", titulo: "📆 DIÁRIO 3", bets: ["📢 Indisponível: aguarde novos conteúdos"], unavailable: true, odd: "-", aposta: "-", ganho: "-" },
+    { id: "diario4", titulo: "📆 DIÁRIO 4", bets: ["📢 Indisponível: aguarde novos conteúdos"], unavailable: true, odd: "-", aposta: "-", ganho: "-" },
+    { id: "injetavel1", titulo: "💉 INJETÁVEL 1", bets: ["📢 Indisponível: aguarde novos conteúdos"], unavailable: true, odd: "-", aposta: "-", ganho: "-" },
+    { id: "injetavel2", titulo: "💉 INJETÁVEL 2", bets: ["📢 Indisponível: aguarde novos conteúdos"], unavailable: true, odd: "-", aposta: "-", ganho: "-" },
+    { id: "corrida1", titulo: "🏁 CORRIDA 1", bets: ["📢 Indisponível: aguarde novos conteúdos"], unavailable: true, odd: "-", aposta: "-", ganho: "-" },
+    { id: "corrida2", titulo: "🏁 CORRIDA 2", bets: ["📢 Indisponível: aguarde novos conteúdos"], unavailable: true, odd: "-", aposta: "-", ganho: "-" }
+  ];
+
+  // Perfis de usuários
+  const usuarios = {
+    "777500": { senha: "2020", nome: "VENCEDOR BRONZE", niveis: { diario1: true, diario2: true, diario3: false, diario4: false, injetavel1: false, injetavel2: false, corrida1: true, corrida2: false } },
+    "400600": { senha: "3030", nome: "VENCEDOR PRATA", niveis: { diario1: true, diario2: true, diario3: true, diario4: false, injetavel1: false, injetavel2: false, corrida1: true, corrida2: false } },
+    "299222": { senha: "5050", nome: "VENCEDOR OURO", niveis: { diario1: true, diario2: true, diario3: true, diario4: true, injetavel1: true, injetavel2: true, corrida1: true, corrida2: true } }
+  };
+
+  const planosList = [
+    { nome: "BOCADO", preco: "500 KZ", beneficios: ["21 palpites/semana", "2 Diários + 1 Corrida"] },
+    { nome: "PALPITE BUÉ MAU", preco: "1000 KZ", beneficios: ["28 palpites/semana", "3 Diários + 1 Corrida"] },
+    { nome: "PLANO BOSS", preco: "2000 KZ", beneficios: ["44 palpites/semana", "3 Diários, 2 Corridas, 2 Injetáveis"] }
+  ];
+
+  const loginSection = document.getElementById('loginSection');
+  const palpitesSection = document.getElementById('palpitesSection');
+  const planosSection = document.getElementById('planosSection');
+  const headerActions = document.getElementById('headerActions');
+
+  let currentUser = null;
+  let currentUserNiveis = null;
+
+  function updateHeader(state, userName = null) {
+    const logoDiv = document.querySelector('.logo-area h1');
+    const logoSpan = document.querySelector('.logo-area span');
+    
+    if (state === 'login') {
+      if (logoDiv) logoDiv.innerText = 'TÁ DENTRO';
+      if (logoSpan) logoSpan.innerText = 'Tá Dentro';
+      headerActions.innerHTML = '';
+    } 
+    else if (state === 'palpites') {
+      if (logoDiv) logoDiv.innerText = `🏆 BEM-VINDO, ${userName || 'VENCEDOR'}`;
+      if (logoSpan) logoSpan.innerText = 'Tá Dentro • Vip';
+      headerActions.innerHTML = `
+        <div class="days-badge">📅 FALTAM 7 DIAS</div>
+        <button class="renew-plan-btn" id="renewPlanHeaderBtn">🔄 RENOVAR PLANO</button>
+      `;
+      const renewBtn = document.getElementById('renewPlanHeaderBtn');
+      if (renewBtn) renewBtn.addEventListener('click', () => showPlanosFromRenew());
+    } 
+    else if (state === 'planos') {
+      if (logoDiv) logoDiv.innerText = 'TÁ DENTRO';
+      if (logoSpan) logoSpan.innerText = 'Escolha seu Plano';
+      headerActions.innerHTML = `<button class="back-button" id="backToLoginBtn">⬅ VOLTAR</button>`;
+      const backBtn = document.getElementById('backToLoginBtn');
+      if (backBtn) backBtn.addEventListener('click', () => showLoginScreen());
+    }
+  }
+
+  function showLoginScreen() {
+    loginSection.classList.remove('hidden-section');
+    palpitesSection.classList.add('hidden-section');
+    planosSection.classList.add('hidden-section');
+    updateHeader('login');
+    currentUser = null;
+    currentUserNiveis = null;
+  }
+
+  function renderPalpites() {
+    const grid = document.getElementById('palpitesGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    
+    palpitesData.forEach((item, idx) => {
+      const hasAccess = currentUserNiveis && currentUserNiveis[item.id];
+      
+      const card = document.createElement('div');
+      card.className = 'card-bet';
+      if (!hasAccess) card.classList.add('hidden-card');
+      
+      let betsHtml = '';
+      if (item.unavailable) {
+        betsHtml = `<div class="unavailable-text">🚫 ${item.bets[0]}</div>`;
+      } else {
+        betsHtml = item.bets.map(bet => `<div class="bet-detail">${bet}</div>`).join('');
+      }
+      
+      const oddDisplay = item.odd || (item.unavailable ? '—' : '10');
+      const apostaDisplay = item.aposta || (item.unavailable ? '—' : '500 KZ');
+      const ganhoDisplay = item.ganho || (item.unavailable ? '—' : '5.000 KZ');
+      
+      card.innerHTML = `
+        <div class="card-header">
+          <h3>${item.titulo}</h3>
+        </div>
+        <div class="card-body">
+          ${betsHtml}
+          <div class="bet-stats">
+            <div>🎲 Odds: ${oddDisplay}</div>
+            <div>💰 Aposta: ${apostaDisplay}</div>
+            <div>🏆 Ganho: ${ganhoDisplay}</div>
+          </div>
+          <button class="btn-details" data-card-id="${item.id}" data-card-title="${item.titulo}">🔍 VER DETALHES</button>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+    
+    document.querySelectorAll('.btn-details').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const cardId = btn.getAttribute('data-card-id');
+        const cardTitle = btn.getAttribute('data-card-title');
+        showPopupAd(cardId, cardTitle);
+      });
+    });
+  }
+
+  function showPopupAd(cardId, cardTitle) {
+    const overlay = document.createElement('div');
+    overlay.className = 'popup-overlay';
+    
+    let popupContentHtml = '';
+    
+    if (cardId === 'diario1') {
+      const diario1Data = palpitesData.find(p => p.id === 'diario1');
+      if (diario1Data && diario1Data.detalhesEspeciais) {
+        const matchesHtml = diario1Data.detalhesEspeciais.map(match => `
+          <div class="match-item">
+            <div class="match-title">📌 ${match}</div>
+          </div>
+        `).join('');
+        popupContentHtml = `
+          <div class="match-item" style="background:#d9f0c5;">
+            <div class="match-title">🎯 SUPER PALPITES DIÁRIO 1 🎯</div>
+            <div class="bet-example">📊 Odds estimadas: ${diario1Data.odd} | 💵 Aposta mínima: ${diario1Data.aposta} | 💰 Retorno: ${diario1Data.ganho}</div>
+          </div>
+          ${matchesHtml}
+          <div class="match-item" style="background:#ffe6b3;">
+            <div class="match-title">⏰ ${diario1Data.inicioFicha}</div>
+            <div class="bet-example">✅ Confira as combinações e maximize seus ganhos! ✅</div>
+          </div>
+          <p style="font-size:12px; margin-top:12px; text-align:center;">💡 Tá Dentro - Exclusivo para Vencedores 💡</p>
+        `;
+      } else {
+        popupContentHtml = `<div class="match-item"><div class="match-title">⚠️ Conteúdo em atualização</div><div class="bet-example">Em breve mais detalhes.</div></div>`;
+      }
+    } 
+    else if (cardId === 'diario2') {
+      const diario2Data = palpitesData.find(p => p.id === 'diario2');
+      if (diario2Data && diario2Data.detalhesEspeciais) {
+        const matchesHtml = diario2Data.detalhesEspeciais.map(match => `
+          <div class="match-item">
+            <div class="match-title">📌 ${match}</div>
+          </div>
+        `).join('');
+        popupContentHtml = `
+          <div class="match-item" style="background:#d9f0c5;">
+            <div class="match-title">🎯 SUPER PALPITES DIÁRIO 2 🎯</div>
+            <div class="bet-example">📊 Odds: ${diario2Data.odd} | 💵 Aposta: ${diario2Data.aposta} | 💰 Retorno: ${diario2Data.ganho}</div>
+          </div>
+          ${matchesHtml}
+          <div class="match-item" style="background:#ffe6b3;">
+            <div class="match-title">⏰ ${diario2Data.inicioFicha}</div>
+            <div class="bet-example">✅ Confira as combinações e maximize seus ganhos! ✅</div>
+          </div>
+          <p style="font-size:12px; margin-top:12px; text-align:center;">💡 Tá Dentro - Exclusivo para Vencedores 💡</p>
+        `;
+      } else {
+        popupContentHtml = `<div class="match-item"><div class="match-title">⚠️ Conteúdo em atualização</div><div class="bet-example">Em breve mais detalhes.</div></div>`;
+      }
+    }
+    else {
+      popupContentHtml = `
+        <div class="match-item" style="text-align:center;">
+          <div class="match-title">🚫 PALPITE INDISPONÍVEL 🚫</div>
+          <div class="bet-example">📢 O conteúdo para <strong>${cardTitle}</strong> ainda não foi liberado.</div>
+          <div class="bet-example">🔜 Fique atento às próximas atualizações ou adquira um plano superior.</div>
+          <div class="bet-example">📞 Contacte-nos para mais informações sobre planos VIP.</div>
+        </div>
+        <div class="contact-row" style="justify-content:center; margin-top:1rem;">
+          <a href="https://wa.me/244958685897" class="contact-link" target="_blank" style="background:#25d366;">💬 Suporte WhatsApp</a>
+        </div>
+      `;
+    }
+    
+    overlay.innerHTML = `
+      <div class="popup-ad">
+        <div class="popup-header">
+          <button class="close-popup">✕</button>
+        </div>
+        <div class="popup-content">
+          ${popupContentHtml}
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    const closeBtn = overlay.querySelector('.close-popup');
+    closeBtn.addEventListener('click', () => overlay.remove());
+  }
+
+  function scrollToContact() {
+    const contactSection = document.getElementById('contactSection');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      contactSection.style.transition = 'all 0.3s ease';
+      contactSection.style.boxShadow = '0 0 0 3px #f5c542';
+      setTimeout(() => contactSection.style.boxShadow = '', 1500);
+    }
+  }
+
+  function renderPlanos() {
+    const container = document.getElementById('plansContainer');
+    if (!container) return;
+    container.innerHTML = '';
+    planosList.forEach((plano, index) => {
+      const planCard = document.createElement('div');
+      planCard.className = 'plan-card';
+      planCard.innerHTML = `
+        <h3>${plano.nome}</h3>
+        <div class="plan-price">${plano.preco}</div>
+        <ul class="plan-features">
+          ${plano.beneficios.map(b => `<li>✅ ${b}</li>`).join('')}
+        </ul>
+        <button class="btn-primary choose-plan-btn" data-plan-index="${index}" style="background:#f5c542; color:#1e3a2f; width:100%">ESCOLHER PLANO</button>
+      `;
+      container.appendChild(planCard);
+    });
+    document.querySelectorAll('.choose-plan-btn').forEach(btn => {
+      btn.addEventListener('click', () => scrollToContact());
+    });
+  }
+
+  function showPlanosScreen() {
+    loginSection.classList.add('hidden-section');
+    palpitesSection.classList.add('hidden-section');
+    planosSection.classList.remove('hidden-section');
+    updateHeader('planos');
+    renderPlanos();
+  }
+
+  function handleRegistrar() {
+    showPlanosScreen();
+  }
+
+  function handleEntrar() {
+    const numero = document.getElementById('loginNumber').value.trim();
+    const senha = document.getElementById('loginPassword').value.trim();
+    const usuario = usuarios[numero];
+    
+    if (usuario && usuario.senha === senha) {
+      currentUser = usuario.nome;
+      currentUserNiveis = usuario.niveis;
+      
+      loginSection.classList.add('hidden-section');
+      palpitesSection.classList.remove('hidden-section');
+      planosSection.classList.add('hidden-section');
+      renderPalpites();
+      updateHeader('palpites', usuario.nome);
+    } else {
+      alert("❌ Acesso negado! Verifique número e senha.");
+    }
+  }
+
+  function showPlanosFromRenew() {
+    showPlanosScreen();
+  }
+
+  function bindEvents() {
+    const btnEntrar = document.getElementById('btnEntrar');
+    const btnRegistrar = document.getElementById('btnRegistrar');
+    if (btnEntrar) btnEntrar.addEventListener('click', handleEntrar);
+    if (btnRegistrar) btnRegistrar.addEventListener('click', handleRegistrar);
+  }
+
+  function init() {
+    bindEvents();
+    showLoginScreen();
+    renderPlanos();
+  }
+
+  init();
+</script>
 </body>
 </html>
