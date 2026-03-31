@@ -93,16 +93,53 @@ const palpitesData = [
     ],
     inicioFicha: "⏰ Início da ficha: 13h"
   },
+  { 
+    id: "corrida1", 
+    titulo: "🏁 CORRIDA 1", 
+    bets: [
+      "🏆 Premier Bet físico: 66571553",
+      "🐘 Elephant online: 216904",
+      "🏬 Elephant Física: 645C280",
+      "🟢 Bantu Bet: 177152",
+      "💰 Kwanza Bet: indisponível"
+    ],
+    finished: false,
+    odd: "400",
+    aposta: "500 KZ",
+    ganho: "300.000 KZ",
+    detalhesEspeciais: [
+      "🇳🇱 Países Baixos vs Equador — Países Baixos",
+      "🇩🇿 Argélia vs Uruguai — Mais de 1.5 ⚽⚽",
+      "🇽🇰 Kosovo vs Turquia — 12 e Mais de 1.5 🔥",
+      "🇷🇸 Sérvia vs Polónia — Polónia (+1.5) 🛡️",
+      "🇨🇿 República Tcheca vs Dinamarca — República Tcheca Mais de 0.5 🎯",
+      "🇧🇮 Burundi vs Chade — Mais de 1.5 ⚽",
+      "🇱🇻 Letónia vs Gibraltar — Letónia Menos de 2.5 🧤",
+      "🇲🇦 Marrocos vs Paraguai — Paraguai (+1.5) 💪",
+      "🇺🇦 Ucrânia vs Albânia — Mais de 1.5 ⚽⚽",
+      "🇱🇺 Luxemburgo vs Malta — Mais de 1.5 📈",
+      "🇪🇹 Etiópia vs São Tomé and Príncipe — Mais de 1.5 🌍",
+      "🇧🇦 Bósnia e Herzegovina vs Itália — Mais de 1.5 🍝",
+      "🏴󠁧󠁢󠁥󠁮󠁧󠁿 Southend United vs Yeovil Town FC — Yeovil Town FC (+1.5) 🟢",
+      "🇪🇸 CD Mirandés vs Albacete Balompié — Mais de 1.5 ⚽",
+      "🇪🇸 Deportivo La Coruna vs Cordoba CF — 12 🎲",
+      "🇪🇸 FC Andorra vs Malaga CF — 12 🔄",
+      "🇪🇸 Real Valladolid vs Cadiz CF — Mais de 1.5 📊",
+      "🇪🇸 SD Huesca vs Cultural Leonesa — 1X 🛡️",
+      "🇪🇸 Racing Santander vs Sporting Gijón — Mais de 1.5 ⚡",
+      "🇲🇺 Mauritius vs Somalia — Somalia (+1) 🌟"
+    ],
+    inicioFicha: "⏰ Início da ficha: 13h"
+  },
   { id: "diario4", titulo: "📆 DIÁRIO 4", bets: ["📢 Indisponível: aguarde novos conteúdos"], unavailable: true, odd: "-", aposta: "-", ganho: "-" },
   { id: "injetavel2", titulo: "💉 INJETÁVEL 2", bets: ["📢 Indisponível: aguarde novos conteúdos"], unavailable: true, odd: "-", aposta: "-", ganho: "-" },
-  { id: "corrida1", titulo: "🏁 CORRIDA 1", bets: ["📢 Indisponível: aguarde novos conteúdos"], unavailable: true, odd: "-", aposta: "-", ganho: "-" },
   { id: "corrida2", titulo: "🏁 CORRIDA 2", bets: ["📢 Indisponível: aguarde novos conteúdos"], unavailable: true, odd: "-", aposta: "-", ganho: "-" }
 ];
 
-// Perfis de usuários
+// Perfis de usuários - ATUALIZADO
 const usuarios = {
   "888900": { senha: "2121", nome: "VENCEDOR BRONZE", niveis: { diario1: true, diario2: true, diario3: false, diario4: false, injetavel1: false, injetavel2: false, corrida1: false, corrida2: false } },
-  "400600": { senha: "3030", nome: "VENCEDOR PRATA", niveis: { diario1: true, diario2: true, diario3: true, diario4: false, injetavel1: false, injetavel2: false, corrida1: false, corrida2: false } },
+  "400600": { senha: "3030", nome: "VENCEDOR PRATA", niveis: { diario1: true, diario2: true, diario3: true, diario4: false, injetavel1: true, injetavel2: false, corrida1: true, corrida2: false } },
   "299222": { senha: "5050", nome: "VENCEDOR OURO", niveis: { diario1: true, diario2: true, diario3: true, diario4: true, injetavel1: true, injetavel2: true, corrida1: true, corrida2: true } }
 };
 
@@ -303,6 +340,31 @@ function showPopupAd(cardId, cardTitle) {
         <div class="match-item" style="background:#ffe6b3;">
           <div class="match-title">⏰ ${injetavelData.inicioFicha}</div>
           <div class="bet-example">✅ Aposte com responsabilidade e maximize seus ganhos! ✅</div>
+        </div>
+        <div class="contact-row" style="justify-content:center; margin-top:1rem;">
+          <a href="https://wa.me/244958685897" class="contact-link" target="_blank" style="background:#25d366;">💬 Suporte WhatsApp</a>
+        </div>
+      `;
+    }
+  }
+  else if (cardId === 'corrida1') {
+    const corridaData = palpitesData.find(p => p.id === 'corrida1');
+    if (corridaData && corridaData.detalhesEspeciais) {
+      const matchesHtml = corridaData.detalhesEspeciais.map(match => `
+        <div class="match-item">
+          <div class="match-title">🎯 ${match}</div>
+        </div>
+      `).join('');
+      popupContentHtml = `
+        <div class="match-item" style="background:#d9f0c5;">
+          <div class="match-title">🏁 CORRIDA 1 - SUPER PALPITES 🏁</div>
+          <div class="bet-example">📊 Odds: ${corridaData.odd} | 💵 Aposta: ${corridaData.aposta} | 💰 Retorno: ${corridaData.ganho}</div>
+        </div>
+        ${matchesHtml}
+        <div class="match-item" style="background:#ffe6b3;">
+          <div class="match-title">⏰ ${corridaData.inicioFicha}</div>
+          <div class="bet-example">✅ Confira as combinações e maximize seus ganhos! ✅</div>
+          <div class="bet-example">💡 Aposte com responsabilidade e boa sorte! 🍀</div>
         </div>
         <div class="contact-row" style="justify-content:center; margin-top:1rem;">
           <a href="https://wa.me/244958685897" class="contact-link" target="_blank" style="background:#25d366;">💬 Suporte WhatsApp</a>
