@@ -52,7 +52,7 @@ const palpitesData = [
       "🏆 Premier Bet físico: 66896087",
       "🐘 Elephant online: 370573",
       "🏬 Elephant Física: 319E142",
-      "🟢 Bantu Bet: 362752",
+      "🟢 Bantu Bet: 360107",
       "💰 Kwanza Bet: indisponível"
     ],
     finished: false,
