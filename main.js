@@ -4,136 +4,116 @@ const palpitesData = [
     id: "diario1", 
     titulo: "📆 DIÁRIO 1", 
     bets: [
-      "🏆 Premier Bet físico: 66905360",
-      "🐘 Elephant online: 366290",
-      "🏬 Elephant Física: 147F335",
-      "🟢 Bantu Bet: 365291",
+      "🏆 Premier Bet físico: 67558748",
+      "🐘 Elephant online: 761657",
+      "🏬 Elephant Física: 947F133",
+      "🟢 Bantu Bet: 758257",
       "💰 Kwanza Bet: indisponível"
     ],
     finished: false,
-    odd: "15",
+    odd: "20",
     aposta: "500 KZ",
-    ganho: "8.000 KZ",
+    ganho: "10.000 KZ",
     detalhesEspeciais: [
-      "🇧🇦 Bósnia & Herzegovina vs. Itália — Itália vence",
-      "🇮🇳 Índia vs. Hong Kong — Índia vence",
-      "🏴󠁧󠁢󠁥󠁮󠁧󠁿 Woking FC vs. Altrincham FC — Woking FC vence",
-      "🇪🇸 CD Mirandés vs. Albacete Balompié — Albacete Balompié vence"
+      "🇪🇸 FC Andorra vs. Málaga CF → 1x2: FC Andorra",
+      "🇪🇸 Racing Santander vs. Sporting Gijón → 1ª parte - 1x2: empate",
+      "🇩🇿 JS Kabylie vs. ES Ben Aknoun → Parte mais produtiva: 2ª parte",
+      "🇪🇸 SD Huesca vs. Cultural Leonesa → Total cantos: mais de 8.5",
+      "🇪🇸 Burgos CF vs. AD Ceuta → Total golos: menos de 2.5"
     ],
-    inicioFicha: "⏰ Início da ficha: 13h"
+    inicioFicha: "⏰ Início da ficha: 16h"
   },
   { 
     id: "diario2", 
     titulo: "📆 DIÁRIO 2", 
     bets: [
-      "🏆 Premier Bet físico: 66896087",
-      "🐘 Elephant online: 369619",
-      "🏬 Elephant Física: 094E102",
-      "🟢 Bantu Bet: 362030",
+      "🏆 Premier Bet físico: 67564015",
+      "🐘 Elephant online: 761014",
+      "🏬 Elephant Física: 158E421",
+      "🟢 Bantu Bet: 757788",
       "💰 Kwanza Bet: indisponível"
     ],
     finished: false,
     odd: "17",
     aposta: "500 KZ",
-    ganho: "9.000 KZ",
+    ganho: "8.000 KZ",
     detalhesEspeciais: [
-      "🇨🇿 República Checa vs. Dinamarca — Ambas equipas marcam: sim",
-      "🇧🇦 Bósnia & Herzegovina vs. Itália — 1ª parte empate",
-      "🇸🇾 Síria vs. Afeganistão — Handicap: Afeganistão (0:3)",
-      "🇻🇳 Vietname vs. Malásia — 1ª parte empate",
-      "🇪🇸 Real Valladolid vs. Cádiz CF — Handicap: Cádiz CF (0:2)"
+      "🇪🇸 Racing Santander vs. Sporting Gijón → Total cantos: mais de 9.5",
+      "🇪🇸 SD Huesca vs. Cultural Leonesa → 1ª parte - 1x2: empate",
+      "🇩🇿 JS Kabylie vs. ES Ben Aknoun → 1x2: JS Kabylie",
+      "🇪🇸 Burgos CF vs. AD Ceuta → Parte mais produtiva: 2ª parte",
+      "🇪🇸 FC Andorra vs. Málaga CF → Total golos: menos de 2.5"
     ],
-    inicioFicha: "⏰ Início da ficha: 13h"
+    inicioFicha: "⏰ Início da ficha: 16h"
   },
   { 
     id: "diario3", 
     titulo: "📆 DIÁRIO 3", 
-    bets: [
-      "🏆 Premier Bet físico: 66896087",
-      "🐘 Elephant online: 370573",
-      "🏬 Elephant Física: 319E142",
-      "🟢 Bantu Bet: 360107",
-      "💰 Kwanza Bet: indisponível"
-    ],
-    finished: false,
-    odd: "15",
-    aposta: "500 KZ",
-    ganho: "8.000 KZ",
-    detalhesEspeciais: [
-      "🇸🇬 Singapura vs. Bangladesh — Handicap: Bangladesh (0:2)",
-      "🇧🇦 Bósnia & Herzegovina vs. Itália — Handicap: Bósnia & Herzegovina (2:0)",
-      "🇸🇪 Suécia vs. Polónia — Mais de 1.5 golos",
-      "🇻🇳 Vietname vs. Malásia — 1 ganha qualquer parte: sim",
-      "🇮🇳 Índia vs. Hong Kong — Fora total mais de 0.5",
-      "🇪🇸 CD Mirandés vs. Albacete Balompié — Handicap: CD Mirandés (1:0)",
-      "🇱🇻 Letónia vs. Gibraltar — Mais de 2.5 golos",
-      "🇨🇿 República Checa vs. Dinamarca — Menos de 3.5 golos"
-    ],
-    inicioFicha: "⏰ Início da ficha: 13h"
+    bets: ["📢 Indisponível: aguarde novos conteúdos"],
+    unavailable: true,
+    odd: "-",
+    aposta: "-",
+    ganho: "-"
+  },
+  { 
+    id: "diario4", 
+    titulo: "📆 DIÁRIO 4", 
+    bets: ["📢 Indisponível: aguarde novos conteúdos"],
+    unavailable: true,
+    odd: "-",
+    aposta: "-",
+    ganho: "-"
   },
   { 
     id: "injetavel1", 
     titulo: "💉 INJETÁVEL 1", 
     bets: [
-      "🏆 Premier Bet físico: 66903593",
-      "🐘 Elephant online: 367593",
-      "🏬 Elephant Física: 053C991",
-      "🟢 Bantu Bet: 362752",
+      "🏆 Premier Bet físico: 67565213",
+      "🐘 Elephant online: 761014",
+      "🏬 Elephant Física: 053C938",
+      "🟢 Bantu Bet: 759426",
       "💰 Kwanza Bet: indisponível"
     ],
     finished: false,
-    odd: "5",
-    aposta: "2.000 KZ",
-    ganho: "10.000 KZ",
+    odd: "17",
+    aposta: "500 KZ",
+    ganho: "5.000 KZ",
     detalhesEspeciais: [
-      "🇻🇳 Vietname vs. Malásia — Fora total mais de 0.5",
-      "🏴󠁧󠁢󠁥󠁮󠁧󠁿 Wealdstone FC vs. Hartlepool United FC — 2 ganha qualquer parte: sim",
-      "🇸🇾 Síria vs. Afeganistão — Mais de 2.5 golos",
-      "🇸🇬 Singapura vs. Bangladesh — Singapura vence"
+      "🇪🇸 Burgos CF vs. AD Ceuta → 1x2: Burgos CF",
+      "🇩🇿 JS Kabylie vs. ES Ben Aknoun → Total golos: menos de 2.5",
+      "🇪🇸 SD Huesca vs. Cultural Leonesa → 2 ganha qualq.Pt: não",
+      "🇪🇸 FC Andorra vs. Málaga CF → Hipótese dupla: empate ou Málaga CF",
+      "🇪🇸 Racing Santander vs. Sporting Gijón → Total golos: mais de 2.5"
     ],
-    inicioFicha: "⏰ Início da ficha: 13h"
+    inicioFicha: "⏰ Início da ficha: 16h"
+  },
+  { 
+    id: "injetavel2", 
+    titulo: "💉 INJETÁVEL 2", 
+    bets: ["📢 Indisponível: aguarde novos conteúdos"],
+    unavailable: true,
+    odd: "-",
+    aposta: "-",
+    ganho: "-"
   },
   { 
     id: "corrida1", 
     titulo: "🏁 CORRIDA 1", 
-    bets: [
-      "🏆 Premier Bet físico: 66571553",
-      "🐘 Elephant online: 216904",
-      "🏬 Elephant Física: 645C280",
-      "🟢 Bantu Bet: 177152",
-      "💰 Kwanza Bet: indisponível"
-    ],
-    finished: false,
-    odd: "400",
-    aposta: "500 KZ",
-    ganho: "300.000 KZ",
-    detalhesEspeciais: [
-      "🇳🇱 Países Baixos vs Equador — Países Baixos",
-      "🇩🇿 Argélia vs Uruguai — Mais de 1.5 ⚽⚽",
-      "🇽🇰 Kosovo vs Turquia — 12 e Mais de 1.5 🔥",
-      "🇷🇸 Sérvia vs Polónia — Polónia (+1.5) 🛡️",
-      "🇨🇿 República Tcheca vs Dinamarca — República Tcheca Mais de 0.5 🎯",
-      "🇧🇮 Burundi vs Chade — Mais de 1.5 ⚽",
-      "🇱🇻 Letónia vs Gibraltar — Letónia Menos de 2.5 🧤",
-      "🇲🇦 Marrocos vs Paraguai — Paraguai (+1.5) 💪",
-      "🇺🇦 Ucrânia vs Albânia — Mais de 1.5 ⚽⚽",
-      "🇱🇺 Luxemburgo vs Malta — Mais de 1.5 📈",
-      "🇪🇹 Etiópia vs São Tomé and Príncipe — Mais de 1.5 🌍",
-      "🇧🇦 Bósnia e Herzegovina vs Itália — Mais de 1.5 🍝",
-      "🏴󠁧󠁢󠁥󠁮󠁧󠁿 Southend United vs Yeovil Town FC — Yeovil Town FC (+1.5) 🟢",
-      "🇪🇸 CD Mirandés vs Albacete Balompié — Mais de 1.5 ⚽",
-      "🇪🇸 Deportivo La Coruna vs Cordoba CF — 12 🎲",
-      "🇪🇸 FC Andorra vs Malaga CF — 12 🔄",
-      "🇪🇸 Real Valladolid vs Cadiz CF — Mais de 1.5 📊",
-      "🇪🇸 SD Huesca vs Cultural Leonesa — 1X 🛡️",
-      "🇪🇸 Racing Santander vs Sporting Gijón — Mais de 1.5 ⚡",
-      "🇲🇺 Mauritius vs Somalia — Somalia (+1) 🌟"
-    ],
-    inicioFicha: "⏰ Início da ficha: 13h"
+    bets: ["📢 Indisponível: aguarde novos conteúdos"],
+    unavailable: true,
+    odd: "-",
+    aposta: "-",
+    ganho: "-"
   },
-  { id: "diario4", titulo: "📆 DIÁRIO 4", bets: ["📢 Indisponível: aguarde novos conteúdos"], unavailable: true, odd: "-", aposta: "-", ganho: "-" },
-  { id: "injetavel2", titulo: "💉 INJETÁVEL 2", bets: ["📢 Indisponível: aguarde novos conteúdos"], unavailable: true, odd: "-", aposta: "-", ganho: "-" },
-  { id: "corrida2", titulo: "🏁 CORRIDA 2", bets: ["📢 Indisponível: aguarde novos conteúdos"], unavailable: true, odd: "-", aposta: "-", ganho: "-" }
+  { 
+    id: "corrida2", 
+    titulo: "🏁 CORRIDA 2", 
+    bets: ["📢 Indisponível: aguarde novos conteúdos"],
+    unavailable: true,
+    odd: "-",
+    aposta: "-",
+    ganho: "-"
+  }
 ];
 
 // Perfis de usuários - ATUALIZADO
@@ -299,30 +279,6 @@ function showPopupAd(cardId, cardTitle) {
       `;
     }
   }
-  else if (cardId === 'diario3') {
-    const diarioData = palpitesData.find(p => p.id === 'diario3');
-    if (diarioData && diarioData.detalhesEspeciais) {
-      const matchesHtml = diarioData.detalhesEspeciais.map(match => `
-        <div class="match-item">
-          <div class="match-title">🎯 ${match}</div>
-        </div>
-      `).join('');
-      popupContentHtml = `
-        <div class="match-item" style="background:#d9f0c5;">
-          <div class="match-title">📆 DIÁRIO 3 - PALPITES COMPLETOS 📆</div>
-          <div class="bet-example">📊 Odds: ${diarioData.odd} | 💵 Aposta: ${diarioData.aposta} | 💰 Retorno: ${diarioData.ganho}</div>
-        </div>
-        ${matchesHtml}
-        <div class="match-item" style="background:#ffe6b3;">
-          <div class="match-title">⏰ ${diarioData.inicioFicha}</div>
-          <div class="bet-example">✅ Aposte com responsabilidade e maximize seus ganhos! ✅</div>
-        </div>
-        <div class="contact-row" style="justify-content:center; margin-top:1rem;">
-          <a href="https://wa.me/244958685897" class="contact-link" target="_blank" style="background:#25d366;">💬 Suporte WhatsApp</a>
-        </div>
-      `;
-    }
-  }
   else if (cardId === 'injetavel1') {
     const injetavelData = palpitesData.find(p => p.id === 'injetavel1');
     if (injetavelData && injetavelData.detalhesEspeciais) {
@@ -340,31 +296,6 @@ function showPopupAd(cardId, cardTitle) {
         <div class="match-item" style="background:#ffe6b3;">
           <div class="match-title">⏰ ${injetavelData.inicioFicha}</div>
           <div class="bet-example">✅ Aposte com responsabilidade e maximize seus ganhos! ✅</div>
-        </div>
-        <div class="contact-row" style="justify-content:center; margin-top:1rem;">
-          <a href="https://wa.me/244958685897" class="contact-link" target="_blank" style="background:#25d366;">💬 Suporte WhatsApp</a>
-        </div>
-      `;
-    }
-  }
-  else if (cardId === 'corrida1') {
-    const corridaData = palpitesData.find(p => p.id === 'corrida1');
-    if (corridaData && corridaData.detalhesEspeciais) {
-      const matchesHtml = corridaData.detalhesEspeciais.map(match => `
-        <div class="match-item">
-          <div class="match-title">🎯 ${match}</div>
-        </div>
-      `).join('');
-      popupContentHtml = `
-        <div class="match-item" style="background:#d9f0c5;">
-          <div class="match-title">🏁 CORRIDA 1 - SUPER PALPITES 🏁</div>
-          <div class="bet-example">📊 Odds: ${corridaData.odd} | 💵 Aposta: ${corridaData.aposta} | 💰 Retorno: ${corridaData.ganho}</div>
-        </div>
-        ${matchesHtml}
-        <div class="match-item" style="background:#ffe6b3;">
-          <div class="match-title">⏰ ${corridaData.inicioFicha}</div>
-          <div class="bet-example">✅ Confira as combinações e maximize seus ganhos! ✅</div>
-          <div class="bet-example">💡 Aposte com responsabilidade e boa sorte! 🍀</div>
         </div>
         <div class="contact-row" style="justify-content:center; margin-top:1rem;">
           <a href="https://wa.me/244958685897" class="contact-link" target="_blank" style="background:#25d366;">💬 Suporte WhatsApp</a>
