@@ -69,7 +69,7 @@ const palpitesData = [
     titulo: "💉 INJETÁVEL 1", 
     bets: [
       "🏆 Premier Bet físico: 67565213",
-      "🐘 Elephant online: 761014",
+      "🐘 Elephant online: 759925",
       "🏬 Elephant Física: 053C938",
       "🟢 Bantu Bet: 759426",
       "💰 Kwanza Bet: indisponível"
